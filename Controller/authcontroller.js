@@ -11,25 +11,27 @@ exports.alllabour=(req,res)=>{
 exports.LabourLogin=(req,res)=>{
     // console.log(req.body)
     const { email, password } = req.body;
+    console.log(req.body)
+    console.log(email,password)
     // const { email, password } = req.body;
 
     Labour.findOne({ email })
         .then(user => {
             if (!user) {
-                return res.status(401).json({ message: 'Invalid credentials' });
+                return res.json({ message: 'usernotfound' });
             }
 
             const isPasswordValid = password === user.password;
 
             if (!isPasswordValid) {
-                return res.status(401).json({ message: 'Invalid credentials' });
+                return res.json({ message: 'password' });
             }
 
-            res.json({ message: 'Login successful' });
+            res.json({ message: 'success',data:user });
         })
         .catch(error => {
             console.error(error);
-            res.status(500).json({ message: 'Server error' });
+            res.json({ message: 'Server error' });
         });
     
 }
@@ -47,13 +49,14 @@ exports.LabourRegister=(req,res)=>{
         panCardNumber: req.body.panCardNumber,
         password: req.body.password
     });
+    console.log(req.body)
     
     user.save()
         .then((createdUser) => {
-            res.status(201).json({message:"user created successfully",createdUser});
+            res.status(201).json({message:"success"});
         })
         .catch((error) => {
-            res.status(500).json({ error: error.message });
+            res.status(500).json({ message:"error" });
         });
     
     // res.json({message:"labour login"})

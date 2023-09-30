@@ -15,7 +15,7 @@ app.use("/labour", labour);
 
 
 // MongoDB connection URL
-const MONGO_URL = "mongodb://127.0.0.1:27017/sih";
+const MONGO_URL = "mongodb+srv://sameerulhakofficial:giM6IyrtgGxv5wLl@bookstore.dxckmpm.mongodb.net/bookstore?retryWrites=true&w=majority";
 const PORT = 5000;
 
 mongoose.connect(MONGO_URL, {
